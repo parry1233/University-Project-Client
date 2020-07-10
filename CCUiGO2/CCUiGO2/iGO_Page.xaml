@@ -1,0 +1,264 @@
+﻿<Page x:Class="CCUiGO2.iGO_Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CCUiGO2"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="575" d:DesignWidth="1010"
+      Title="HomePage" Background="GhostWhite">
+	<Page.Resources>
+		<Style TargetType="TextBox" x:Key="Textbox1">
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="Width" Value="185"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0 0 0 1"/>
+			<Setter Property="BorderBrush" Value="#e1eef6"/>
+			<Setter Property="VerticalContentAlignment" Value="Bottom"/>
+		</Style>
+
+		<Style TargetType="TextBox" x:Key="Textbox2">
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="Width" Value="195"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0 0 0 1"/>
+			<Setter Property="BorderBrush" Value="#e1eef6"/>
+			<Setter Property="VerticalContentAlignment" Value="Bottom"/>
+		</Style>
+
+		<Style TargetType="ComboBox" x:Key="Combobox1">
+			<Setter Property="BorderBrush" Value="#e1eef6"/>
+			<Setter Property="BorderThickness" Value="0 0 0 1"/>
+			<Setter Property="Width" Value="70"/>
+			<Setter Property="Margin" Value="10,4,10,0"/>
+			<Setter Property="Background" Value="Transparent"/>
+		</Style>
+
+		<Style TargetType="Button" x:Key="editbutton">
+			<Setter Property="FontSize" Value="20"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Opacity" Value="0.8"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="Width" Value="70"/>
+			<Setter Property="Height" Value="40"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="20" Name="PART_Background">
+							<Border.Background>
+								<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+									<GradientStop Color="#f8f8ff" Offset="0.0" />
+								</LinearGradientBrush>
+							</Border.Background>
+							<ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style TargetType="Button" x:Key="Button3">
+			<Setter Property="FontSize" Value="35"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Foreground" Value="WhiteSmoke"/>
+			<Setter Property="Width" Value="60"/>
+			<Setter Property="Height" Value="60"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="30" Name="PART_Background">
+							<Border.Background>
+								<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+									<GradientStop Color="#ff7761" Offset="0.0" />
+								</LinearGradientBrush>
+							</Border.Background>
+							<ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Page.Resources>
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="315*"/>
+			<ColumnDefinition Width="190*"/>
+		</Grid.ColumnDefinitions>
+		<Grid Grid.Column="0">
+			<StackPanel Orientation="Horizontal">
+				<StackPanel x:Name="todayStack"  Orientation="Vertical" Margin="10 0">
+					<TextBlock Text="TODAY" FontSize="40" Margin="0 30 0 10"/>
+					<Border Background="#6AAFE6" Width="300" Height="450" CornerRadius="20">
+						<StackPanel x:Name="Today_Target" Orientation="Vertical">
+							<StackPanel x:Name="Today_Target_1" Orientation="Horizontal" Margin="5 50 0 0">
+								<RadioButton x:Name="Today_Target_1_radioBTN" Margin="0 20 0 0" Background="#d9e1e8" VerticalAlignment="Center" IsEnabled="False" Checked="Today_Target_radioBTN_Checked"/>
+								<Border Width="65" Height="35" Margin="5 8 10 0" BorderThickness="0 0 0 1" BorderBrush="Black" >
+									<TextBlock x:Name="Today_Target_1_tag" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="#F8F8FF" Opacity="0.7"/>
+								</Border>
+								<TextBox x:Name="Today_Target_1_name" Style="{StaticResource Textbox1}" IsEnabled="False"/>
+							</StackPanel>
+							<StackPanel x:Name="Today_Target_2" Orientation="Horizontal" Margin="5 30 0 0">
+								<RadioButton x:Name="Today_Target_2_radioBTN" Margin="0 20 0 0" Background="#d9e1e8" IsEnabled="False" Checked="Today_Target_radioBTN_Checked"/>
+								<Border Width="65" Height="35" Margin="5 8 10 0" BorderThickness="0 0 0 1" BorderBrush="Black" >
+									<TextBlock x:Name="Today_Target_2_tag" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="#F8F8FF" Opacity="0.7"/>
+								</Border>
+								<TextBox x:Name="Today_Target_2_name" Style="{StaticResource Textbox1}" IsEnabled="False"/>
+							</StackPanel>
+							<StackPanel x:Name="Today_Target_3" Orientation="Horizontal" Margin="5 30 0 0">
+								<RadioButton x:Name="Today_Target_3_radioBTN" Margin="0 20 0 0" Background="#d9e1e8" IsEnabled="False" Checked="Today_Target_radioBTN_Checked"/>
+								<Border Width="65" Height="35" Margin="5 8 10 0" BorderThickness="0 0 0 1" BorderBrush="Black" >
+									<TextBlock x:Name="Today_Target_3_tag" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="#F8F8FF" Opacity="0.7"/>
+								</Border>
+								<TextBox x:Name="Today_Target_3_name" Style="{StaticResource Textbox1}" IsEnabled="False"/>
+							</StackPanel>
+							<StackPanel x:Name="Today_Target_4" Orientation="Horizontal" Margin="5 30 0 0">
+								<RadioButton x:Name="Today_Target_4_radioBTN" Margin="0 20 0 0" Background="#d9e1e8" IsEnabled="False" Checked="Today_Target_radioBTN_Checked"/>
+								<Border Width="65" Height="35" Margin="5 8 10 0" BorderThickness="0 0 0 1" BorderBrush="Black" >
+									<TextBlock x:Name="Today_Target_4_tag" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="#F8F8FF" Opacity="0.7"/>
+								</Border>
+								<TextBox x:Name="Today_Target_4_name" Style="{StaticResource Textbox1}" IsEnabled="False"/>
+							</StackPanel>
+							<StackPanel x:Name="Today_Target_5" Orientation="Horizontal" Margin="5 30 0 0">
+								<RadioButton x:Name="Today_Target_5_radioBTN" Margin="0 20 0 0" Background="#d9e1e8" IsEnabled="False" Checked="Today_Target_radioBTN_Checked"/>
+								<Border Width="65" Height="35" Margin="5 8 10 0" BorderThickness="0 0 0 1" BorderBrush="Black" >
+									<TextBlock x:Name="Today_Target_5_tag" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="#F8F8FF" Opacity="0.7"/>
+								</Border>
+								<TextBox x:Name="Today_Target_5_name" Style="{StaticResource Textbox1}" IsEnabled="False"/>
+							</StackPanel>
+						</StackPanel>
+					</Border>
+				</StackPanel>
+				<StackPanel Orientation="Vertical" Margin="0 0">
+					<TextBlock Text="TOMORROW" FontSize="40" Margin="0 30 0 10"/>
+					<Border Background="#9baec8" Width="300" Height="450" CornerRadius="20">
+						<StackPanel x:Name="Tomorr_Target" Orientation="Vertical">
+							<CheckBox x:Name="EditTargetBox" Grid.Column="0" Margin="250 30 0 -50" Background="#F7ACA6" Click="EditTargetBox_Click">
+								<materialDesign:PackIcon Kind="Pencil" Foreground="#F8F8FF"/>
+							</CheckBox>
+							<StackPanel x:Name="Tomorr_Target_1" Orientation="Horizontal" Margin="5 50 0 0" IsEnabled="False">
+								<ComboBox x:Name="Tomorr_Target_1_Combobox"  materialDesign:HintAssist.Hint="TAG" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Width="65" Margin="10,0,10,0" Foreground="#F8F8FF" FontSize="16">
+									<ComboBoxItem>
+										學習
+									</ComboBoxItem>
+									<ComboBoxItem>
+										作業
+									</ComboBoxItem>
+									<ComboBoxItem>
+										考試
+									</ComboBoxItem>
+									<ComboBoxItem>
+										思考
+									</ComboBoxItem>
+								</ComboBox>
+								<TextBox x:Name="Tomorr_Target_1_Textbox" Style="{StaticResource Textbox2}"/>
+							</StackPanel>
+							<StackPanel x:Name="Tomorr_Target_2" Orientation="Horizontal" Margin="5 30 0 0" IsEnabled="False">
+								<ComboBox x:Name="Tomorr_Target_2_Combobox" materialDesign:HintAssist.Hint="TAG" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Width="65" Margin="10,0,10,0" Foreground="#F8F8FF" FontSize="16">
+									<ComboBoxItem>
+										學習
+									</ComboBoxItem>
+									<ComboBoxItem>
+										作業
+									</ComboBoxItem>
+									<ComboBoxItem>
+										考試
+									</ComboBoxItem>
+									<ComboBoxItem>
+										思考
+									</ComboBoxItem>
+								</ComboBox>
+								<TextBox x:Name="Tomorr_Target_2_Textbox" Style="{StaticResource Textbox2}"/>
+							</StackPanel>
+							<StackPanel x:Name="Tomorr_Target_3" Orientation="Horizontal" Margin="5 30 0 0" IsEnabled="False">
+								<ComboBox x:Name="Tomorr_Target_3_Combobox" materialDesign:HintAssist.Hint="TAG" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Width="65" Margin="10,0,10,0" Foreground="#F8F8FF" FontSize="16">
+									<ComboBoxItem>
+										學習
+									</ComboBoxItem>
+									<ComboBoxItem>
+										作業
+									</ComboBoxItem>
+									<ComboBoxItem>
+										考試
+									</ComboBoxItem>
+									<ComboBoxItem>
+										思考
+									</ComboBoxItem>
+								</ComboBox>
+								<TextBox x:Name="Tomorr_Target_3_Textbox" Style="{StaticResource Textbox2}"/>
+							</StackPanel>
+							<StackPanel x:Name="Tomorr_Target_4" Orientation="Horizontal" Margin="5 30 0 0" IsEnabled="False">
+								<ComboBox x:Name="Tomorr_Target_4_Combobox" materialDesign:HintAssist.Hint="TAG" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Width="65" Margin="10,0,10,0" Foreground="#F8F8FF" FontSize="16">
+									<ComboBoxItem>
+										學習
+									</ComboBoxItem>
+									<ComboBoxItem>
+										作業
+									</ComboBoxItem>
+									<ComboBoxItem>
+										考試
+									</ComboBoxItem>
+									<ComboBoxItem>
+										思考
+									</ComboBoxItem>
+								</ComboBox>
+								<TextBox x:Name="Tomorr_Target_4_Textbox" Style="{StaticResource Textbox2}"/>
+							</StackPanel>
+							<StackPanel x:Name="Tomorr_Target_5" Orientation="Horizontal" Margin="5 30 0 0" IsEnabled="False">
+								<ComboBox x:Name="Tomorr_Target_5_Combobox" materialDesign:HintAssist.Hint="TAG" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Width="65" Margin="10,0,10,0" Foreground="#F8F8FF" FontSize="16">
+									<ComboBoxItem>
+										學習
+									</ComboBoxItem>
+									<ComboBoxItem>
+										作業
+									</ComboBoxItem>
+									<ComboBoxItem>
+										考試
+									</ComboBoxItem>
+									<ComboBoxItem>
+										思考
+									</ComboBoxItem>
+								</ComboBox>
+								<TextBox x:Name="Tomorr_Target_5_Textbox" Style="{StaticResource Textbox2}"/>
+							</StackPanel>
+						</StackPanel>
+					</Border>
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+		<Grid Grid.Column="1">
+			<TextBlock x:Name="Long_Target_Title" Text="LONG TARGET" FontSize="35" Width="340" Height="45" Margin="0 0 0 470" TextAlignment="Center"/>
+			<TextBlock x:Name="Long_Target_Time" Text="000天" FontSize="30" Width="340" Height="45" Margin="20,78,20,451" TextAlignment="Center"/>
+			<Button x:Name="AddTopicBTN" Content="+" Style="{StaticResource Button3}" VerticalAlignment="Top" Margin="0 15" Cursor="Hand" Click="AddTarget"/>
+			<Viewbox x:Name="Complete_Percent" Width="200" Height="420" Margin="90,127,90,28">
+				<StackPanel Orientation="Vertical">
+					<Border Background="#7f9eb2" CornerRadius="2,2,0,0" Padding="2" Width="20" Height="7" Margin="0,-2,0,-2"/>
+					<Border BorderBrush="#7f9eb2" BorderThickness="2" CornerRadius="5" Padding="2" Width="50" Height="100">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition />
+								<RowDefinition Height="78" />
+								<RowDefinition Height="14"/>
+							</Grid.RowDefinitions>
+							<Border x:Name="percentageBorder" VerticalAlignment="Bottom" Height="92" Grid.Row="1" Background="#d9e1e8" CornerRadius="2" Grid.RowSpan="2"/>
+						</Grid>
+					</Border>
+				</StackPanel>
+			</Viewbox>
+			<TextBlock x:Name="LongTargetPercentage" TextAlignment="Center" HorizontalAlignment="Center" Text="100%" FontSize="40" Height="50" Width="167" Foreground="Black" Margin="107,292,106,233"/>
+
+			<Grid x:Name="AddTargetTitle" Margin="50,90,50,283" Background="Gray" Opacity="0.8">
+				<StackPanel Orientation="Vertical">
+					<TextBox x:Name="AddTargetTitleBox" Text="輸入計畫名稱" Height="35" Foreground="AliceBlue" FontSize="16" Width="250" BorderThickness="0 0 0 1" BorderBrush="AliceBlue"
+                     VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0 20" GotFocus="AddTargetTitleBox_GotFocus" LostFocus="AddTargetTitleBox_LostFocus"/>
+					<TextBox x:Name="AddTargetTimeBox" Text="輸入計畫天數(2天以上)" Height="35" Foreground="AliceBlue" FontSize="16" Width="250" BorderThickness="0 0 0 1" BorderBrush="AliceBlue"
+                     VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0 20" GotFocus="AddTargetTimeBox_GotFocus" LostFocus="AddTargetTimeBox_LostFocus" />
+					<Button x:Name="editLongTargetBTN" Content="儲存" Style="{StaticResource editbutton}" VerticalAlignment="Top" Cursor="Hand" Click="editLongTargetBTN_Click"/>
+				</StackPanel>
+			</Grid>
+		</Grid>
+	</Grid>
+</Page>

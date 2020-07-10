@@ -1,0 +1,111 @@
+﻿<Window x:Class="CCUiGO2.ForgetPWD_Verify"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
+        xmlns:local="clr-namespace:CCUiGO2"
+        mc:Ignorable="d"
+        Icon="Icon/igo_white.png"
+        Title="ForgetPwVerify" Height="400" Width="480" WindowState="Normal" WindowStyle="None" Background="#6E7783"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="TextBox" x:Key="Textbox1">
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="Width" Value="223"/>
+            <Setter Property="Height" Value="33"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                                CornerRadius="15"
+                                BorderBrush="#D8E6E7"
+                                BorderThickness="2"
+                                Background="#D8E6E7" Margin="10,0,10,0">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="Button1">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Background" Value="#77AAAD"/>
+            <Setter Property="Width" Value="141"/>
+            <Setter Property="Height" Value="33"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="16" Name="PART_Background">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#77AAAD" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="materialDesign:PackIcon" x:Key="materialDesign1">
+            <Setter Property="Height" Value="27"/>
+            <Setter Property="Width" Value="19"/>
+            <Setter Property="Foreground" Value="#D8E6E7"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid Height="25" Margin="0,0,0,375" Background="#77AAAD" MouseDown="WindowDrag" Cursor="Hand">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <ListView x:Name="Title" Foreground="#FF5C99D6" ScrollViewer.VerticalScrollBarVisibility="Hidden"  PreviewMouseLeftButtonUp="TitleClick"  Height="25" Width="64">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" Background="Transparent"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListViewItem x:Name="ZoomIn">
+                        <materialDesign:PackIcon Kind="Minus" Height="15" Width="15" Foreground="#D8E6E7"/>
+                    </ListViewItem>
+                    <ListViewItem x:Name="Close">
+                        <materialDesign:PackIcon Kind="Close" Height="15" Width="15" Foreground="#D8E6E7"/>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+
+        <Grid Margin="0,25,0,275">
+            <Image Width="62" Height="60" Margin="0,0,0,19" Source="Icon\igo_white_update1.png" Stretch="Fill" HorizontalAlignment="Center"/>
+            <Label Content="Take Care Of Your Course" Foreground="#D8E6E7" Margin="0,0,0,8" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        </Grid>
+
+        <Grid Margin="0,125,0,120">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,90">
+                <Label Content="驗證碼:" Foreground="#D8E6E7" FontSize="16"/>
+                <TextBox x:Name="verify_code_text" Style="{StaticResource Textbox1}" VerticalContentAlignment="center" Text="輸入驗證碼" Foreground="Gray" 
+		            GotFocus="Verify_code_text_GotFocus" LostFocus="Verify_code_text_LostFocus"/>
+                <Button Name="ReVerifyCodeBTN" Content="重取驗證碼" VerticalAlignment="Top" Width="101" Height="34" Margin="0,0,0,0" Style="{StaticResource Button1}" Click="ReVerifyCode_Click"/>
+            </StackPanel>
+
+            <Label Content="若未收到驗證碼信，請點選重取驗整碼的按鈕，" Foreground="#D8E6E7" Margin="70,90,0,0" Opacity="0.6" HorizontalAlignment="Left"/>
+            <Label Content="或返回上一步確認信箱輸入正確與否" Foreground="#D8E6E7" Margin="70,110,0,0" Opacity="0.6" HorizontalAlignment="Left"/>
+
+        </Grid>
+
+        <Grid Margin="0,350,0,0">
+            <Button Name="next" Content="NEXT" Width="70" Height="30" Margin="380,0,0,0" Style="{StaticResource Button1}" Click="Next_Click"/>
+            <Button Name="back" Content="BACK" Width="70" Height="30" Margin="0,0,380,0" Style="{StaticResource Button1}" Click="Back_Click"/>
+        </Grid>
+    </Grid>
+</Window>

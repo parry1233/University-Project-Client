@@ -1,0 +1,484 @@
+﻿<Page x:Class="CCUiGO2.Schedule_Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CCUiGO2"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="575" d:DesignWidth="1010"
+      Title="HomePage" Background="#fffcf0">
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Key="textblock">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Foreground" Value="#df405a"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="textblock1">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Foreground" Value="#e85a71"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="textblock2">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Foreground" Value="#c72e45"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="border1">
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Background" Value="#fffcf0"/>
+            <Setter Property="BorderBrush" Value="#F7ACA6"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="border2">
+            <Setter Property="Height" Value="150"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Background" Value="#fffcf0"/>
+            <Setter Property="BorderBrush" Value="#F7ACA6"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Grid>
+                            <!--滾動條顏色-->
+                            <Border Background="#646465" CornerRadius="3"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="VerticalScrollBarPageButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Opacity" Value="0.2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Rectangle Fill="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--滾動條上下按鈕-->
+        <Style x:Key="VerticalScrollBarPageButton2" TargetType="{x:Type RepeatButton}">
+            <Setter Property="OverridesDefaultStyle"  Value="true"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Opacity" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Rectangle Fill="#90000000" Width="0" Height="0"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="for_scrollbar" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Margin" Value="0,1,1,6"/>
+            <Setter Property="Width"  Value="10"/>
+            <Setter Property="MinWidth"  Value="5"/>
+            <Setter Property="Opacity" Value="0.2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid x:Name="Bg" SnapsToDevicePixels="true">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <RepeatButton  Grid.Row="0" Style="{StaticResource VerticalScrollBarPageButton2}" Command="{x:Static ScrollBar.PageUpCommand}"/>
+                            <Track x:Name="PART_Track" Grid.Row="1" IsEnabled="{TemplateBinding IsMouseOver}" IsDirectionReversed="true">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Style="{StaticResource VerticalScrollBarPageButton}" Command="{x:Static ScrollBar.PageUpCommand}"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Style="{StaticResource VerticalScrollBarPageButton}" Command="{x:Static ScrollBar.PageDownCommand}"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb Style="{StaticResource ScrollBarThumb}"/>
+                                </Track.Thumb>
+                            </Track>
+                            <RepeatButton Grid.Row="2" Style="{StaticResource VerticalScrollBarPageButton2}" Command="{x:Static ScrollBar.PageDownCommand}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="for_scrollviewer" TargetType="{x:Type ScrollViewer}">
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <Grid Background="{TemplateBinding Background}">
+                                <ScrollContentPresenter  Cursor="{TemplateBinding Cursor}" Margin="{TemplateBinding Padding}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                <ScrollBar x:Name="PART_VerticalScrollBar"
+                                       HorizontalAlignment="Right"
+                                       Maximum="{TemplateBinding ScrollableHeight}"
+                                       Orientation="Vertical"
+                                       Style="{StaticResource for_scrollbar}"
+                                       ViewportSize="{TemplateBinding ViewportHeight}"
+                                       Value="{TemplateBinding VerticalOffset}"
+                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="ScrollChanged" >
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                        Storyboard.TargetName="PART_VerticalScrollBar"
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="0.8" Duration="0:0:1"/>
+                                        <DoubleAnimation
+                                        Storyboard.TargetName="PART_VerticalScrollBar"
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="0.2" Duration="0:0:1" BeginTime="0:0:1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseEnter"
+                                      SourceName="PART_VerticalScrollBar">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                        Storyboard.TargetName="PART_VerticalScrollBar"
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="0.8" Duration="0:0:0.6"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave"
+                                      SourceName="PART_VerticalScrollBar">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                        Storyboard.TargetName="PART_VerticalScrollBar"
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="0.2" Duration="0:0:0.6"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ScrollBar" BasedOn="{StaticResource for_scrollbar}"/>
+        <Style TargetType="ScrollViewer" BasedOn="{StaticResource for_scrollviewer}"/>
+
+        <Style TargetType="Button" x:Key="button1">
+            <Setter Property="Background" Value="#F7ACA6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="510"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="910"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Border Style="{StaticResource border1}">
+                    <TextBlock Text="一" Style="{StaticResource textblock}"/>
+                </Border>
+                <Border Style="{StaticResource border1}">
+                    <TextBlock Text="二" Style="{StaticResource textblock}"/>
+                </Border>
+                <Border Style="{StaticResource border1}">
+                    <TextBlock Text="三" Style="{StaticResource textblock}"/>
+                </Border>
+                <Border Style="{StaticResource border1}">
+                    <TextBlock Text="四" Style="{StaticResource textblock}"/>
+                </Border>
+                <Border Style="{StaticResource border1}">
+                    <TextBlock Text="五" Style="{StaticResource textblock}"/>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="100" HorizontalAlignment="Left" Style="{StaticResource border2}">
+                            <Border.ToolTip>
+                                <TextBlock>
+                                    (1)07:10-08:00 (2)08:10-09:00 (3)09:10-10:00
+                                    <LineBreak/>
+                                    (A)07:15-08:30 (B)08:45-10:00
+                                </TextBlock>
+                            </Border.ToolTip>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Margin="15 25">
+                                    <TextBlock Text="1" Style="{StaticResource textblock1}"/>
+                                    <TextBlock Text="2" Style="{StaticResource textblock1}"/>
+                                    <TextBlock Text="3" Style="{StaticResource textblock1}"/>
+                                </StackPanel>
+                                <StackPanel Margin="10 45">
+                                    <TextBlock Text="A" Style="{StaticResource textblock2}"/>
+                                    <TextBlock Text="B" Style="{StaticResource textblock2}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Mon123AB" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Mon123ABStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Tue123AB" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Tue123ABStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Wed123AB" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Wed123ABStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Thu123AB" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Thu123ABStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Fri123AB" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Fri123ABStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="100" HorizontalAlignment="Left" Style="{StaticResource border2}">
+                            <Border.ToolTip>
+                                <TextBlock>
+                                    (4)10:10-11:00 (5)11:10-12:00 (6)12:10-13:00
+                                    <LineBreak/>
+                                    (C)10:15-11:30 (D)11:45-13:00
+                                </TextBlock>
+                            </Border.ToolTip>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Margin="15 25">
+                                    <TextBlock Text="4" Style="{StaticResource textblock1}"/>
+                                    <TextBlock Text="5" Style="{StaticResource textblock1}"/>
+                                    <TextBlock Text="6" Style="{StaticResource textblock1}"/>
+                                </StackPanel>
+                                <StackPanel Margin="10 45">
+                                    <TextBlock Text="C" Style="{StaticResource textblock2}"/>
+                                    <TextBlock Text="D" Style="{StaticResource textblock2}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Mon456CD" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Mon456CDStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Tue456CD" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Tue456CDStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Wed456CD" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Wed456CDStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Thu456CD" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Thu456CDStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Fri456CD" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Fri456CDStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="100" HorizontalAlignment="Left" Style="{StaticResource border2}">
+                            <Border.ToolTip>
+                                <TextBlock>
+                                    (7)13:10-14:00 (8)14:10-15:00 (9)15:10-16:00
+                                    <LineBreak/>
+                                    (E)13:15-14:30 (F)14:45-16:00
+                                </TextBlock>
+                            </Border.ToolTip>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Margin="15 25">
+                                    <TextBlock Text="7" Style="{StaticResource textblock1}"/>
+                                    <TextBlock Text="8" Style="{StaticResource textblock1}"/>
+                                    <TextBlock Text="9" Style="{StaticResource textblock1}"/>
+                                </StackPanel>
+                                <StackPanel Margin="10 45">
+                                    <TextBlock Text="E" Style="{StaticResource textblock2}"/>
+                                    <TextBlock Text="F" Style="{StaticResource textblock2}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Mon789EF" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Mon789EFStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Tue789EF" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Tue789EFStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Wed789EF" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Wed789EFStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Thu789EF" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Thu789EFStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Fri789EF" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Fri789EFStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="100" HorizontalAlignment="Left" Style="{StaticResource border2}">
+                            <Border.ToolTip>
+                                <TextBlock>
+                                    (10)16:10-17:00 (11)17:10-18:00 (12)18:10-19:00
+                                    <LineBreak/>
+                                    (G)16:15-17:30 (H)17:45-19:00
+                                </TextBlock>
+                            </Border.ToolTip>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Margin="5 25">
+                                    <TextBlock Text="10" Style="{StaticResource textblock1}"/>
+                                    <TextBlock Text="11" Style="{StaticResource textblock1}"/>
+                                    <TextBlock Text="12" Style="{StaticResource textblock1}"/>
+                                </StackPanel>
+                                <StackPanel Margin="10 45">
+                                    <TextBlock Text="G" Style="{StaticResource textblock2}"/>
+                                    <TextBlock Text="H" Style="{StaticResource textblock2}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Mon012GH" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Mon012GHStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Tue012GH" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Tue012GHStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Wed012GH" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Wed012GHStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Thu012GH" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Thu012GHStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Fri012GH" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Fri012GHStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="100" HorizontalAlignment="Left" Style="{StaticResource border2}">
+                            <Border.ToolTip>
+                                <TextBlock>
+                                    (13)19:10-20:00 (14)20:10-21:00 (15)21:10-22:00
+                                    <LineBreak/>
+                                    (I)19:15-20:30 (J)20:45-22:00
+                                </TextBlock>
+                            </Border.ToolTip>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Margin="5 25">
+                                    <TextBlock Text="13" Style="{StaticResource textblock1}"/>
+                                    <TextBlock Text="14" Style="{StaticResource textblock1}"/>
+                                    <TextBlock Text="15" Style="{StaticResource textblock1}"/>
+                                </StackPanel>
+                                <StackPanel Margin="12 45">
+                                    <TextBlock Text="I" Style="{StaticResource textblock2}"/>
+                                    <TextBlock Text="J" Style="{StaticResource textblock2}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Mon345IJ" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Mon345IJStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Tue345IJ" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Tue345IJStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Wed345IJ" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Wed345IJStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Thu345IJ" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Thu345IJStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Fri345IJ" Style="{StaticResource border2}">
+                            <StackPanel x:Name="Fri345IJStack" Orientation="Vertical" VerticalAlignment="Center">
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <ComboBox x:Name="ScheduleSelect" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Width="80" SelectionChanged="ScheduleSelect_Changed"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="5 5" VerticalAlignment="Bottom" Width="24" Height="24" Style="{StaticResource button1}" Click="AddTable" Cursor="Hand"/>
+        <Button Content="-" HorizontalAlignment="Left" Margin="31,0,0,5" VerticalAlignment="Bottom" Width="24" Height="24" Style="{StaticResource button1}" Click="DeleteTable" Cursor="Hand"/>
+        <CheckBox x:Name="EditCheckBox" Grid.Column="0" Margin="0,0,5,7" VerticalAlignment="Bottom" Click="EditCancel" HorizontalAlignment="Right" Background="#F7ACA6">
+            <materialDesign:PackIcon Kind="Pencil" Foreground="#F7ACA6"/>
+        </CheckBox>
+
+    </Grid>
+</Page>

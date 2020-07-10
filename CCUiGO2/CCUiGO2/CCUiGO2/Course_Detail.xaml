@@ -1,0 +1,277 @@
+﻿<Page x:Class="CCUiGO2.Course_Detail"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CCUiGO2"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="575" d:DesignWidth="1010"
+      Title="OtherPage" Background="GhostWhite">
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="Button1">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Width" Value="85"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="16" Name="PART_Background">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#9C8F96" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="Button2">
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Width" Value="420"/>
+            <Setter Property="Height" Value="118"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="40" Name="PART_Background">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#A6C2CE" Offset="0.0"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="Button3">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Height" Value="39"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="16" Name="PART_Background">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#ff7761" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="Textblock1">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Foreground" Value="#F8FAFF"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="Tag_Text">
+            <Setter Property="Foreground" Value="#D81159"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid Margin="0,0,0,505">
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="1010" >
+                <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" MouseDown="PackIcon_MouseDown" Cursor="Hand" ToolTip="上一頁">
+					<materialDesign:PackIcon Kind="ArrowLeft" Height="30" Width="30" Foreground="#534847"/>
+				</TextBlock>
+				<Button Name="Add_Comment" Content="新增評論" Margin="10,0,0,0" Style="{StaticResource Button3}" Cursor="Hand"/>
+                <TextBlock x:Name="AddToScheduleBTN" Cursor="Hand" ToolTip="將此課程加至課表" VerticalAlignment="Center" Margin="10 0 0 0" MouseDown="AddToScheduleBTN_MouseDown">
+                    <materialDesign:PackIcon Kind="Plus" Foreground="#ff7761" Height="30" Width="30"/>
+                </TextBlock>
+                <TextBlock x:Name="CourseDetail_Name" Text="課程名稱" Foreground="#6B799E" FontWeight="Bold" FontSize="35" Margin="10,5,0,0" 
+                           Width="650" VerticalAlignment="Center" TextAlignment="Center">
+                <TextBlock.ToolTip>
+                    <TextBlock x:Name="CourseDetail_Name_ToolTip"/>
+                </TextBlock.ToolTip>
+                </TextBlock>
+                <TextBlock x:Name="CourseDetail_Rate" Text="4.7" Foreground="#ff7761" FontWeight="Bold" FontSize="40" Margin="40,5,0,0"/>
+			</StackPanel>
+        </Grid>
+
+        <Grid Margin="0,70,0,470">
+            <StackPanel Orientation="Horizontal" Width="1010" Height="35" VerticalAlignment="Top" Background="#9C8F96">
+				<TextBlock x:Name="CourseDetail_Code" Text="課程代碼" Margin="110,0,0,0" VerticalAlignment="Center" Style="{StaticResource Textblock1}"/>
+                <TextBlock x:Name="CourseDetail_Depart" Text="開課系所" Margin="150,0,0,0" VerticalAlignment="Center" Style="{StaticResource Textblock1}">
+                <TextBlock.ToolTip>
+                    <TextBlock x:Name="CourseDetail_Depart_ToolTip"/>
+                </TextBlock.ToolTip>
+                </TextBlock>
+                <TextBlock x:Name="CourseDetail_Tea" Text="課程老師" Margin="150,0,0,0" VerticalAlignment="Center" Style="{StaticResource Textblock1}">
+                <TextBlock.ToolTip>
+                    <TextBlock x:Name="CourseDetail_Tea_ToolTip"/>
+                </TextBlock.ToolTip>
+                </TextBlock>
+				<TextBlock x:Name="CourseDetail_Time" Text="課程時間" Margin="150,0,0,0" VerticalAlignment="Center" Style="{StaticResource Textblock1}">
+					<TextBlock.ToolTip>
+						<TextBlock x:Name="CourseDetail_Time_ToolTip"/>
+					</TextBlock.ToolTip>
+                </TextBlock>
+			</StackPanel>
+        </Grid>
+
+        <Grid Margin="0,105,0,75">
+			<Button x:Name="CommentBTN1" Margin="80,5,510,255" Style="{StaticResource Button2}">
+                <Button.ToolTip>
+                    <TextBlock x:Name="Comment_Time_ToolTip1"/>
+                </Button.ToolTip>
+                <DockPanel Height="118" Width="420">
+                    <TextBlock x:Name="User_Name1" Text="用戶名稱" FontWeight="Bold" FontSize="23" Margin="20,10,150,0" DockPanel.Dock="Top"/>
+                    <TextBlock x:Name="User_Rate1" Text="分數" FontWeight="Bold" FontSize="30" Margin="0,0,30,20" DockPanel.Dock="Right" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="User_Comment1" Text="內容" TextWrapping="Wrap" FontSize="19" Margin="20,5,0,27" DockPanel.Dock="Left" MaxHeight="45" Width="300">
+                        <TextBlock.ToolTip>
+                            <TextBlock x:Name="User_Comment_ToolTip1" TextWrapping="Wrap" MaxWidth="250"/>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="-295 53 0 0" Width="350">
+                        <TextBlock x:Name="User_Tag1_1" Text="#標籤1" Style="{StaticResource Tag_Text}"/>
+                        <TextBlock x:Name="User_Tag1_2" Text="#標籤2" Style="{StaticResource Tag_Text}" Margin="10 0 0 0"/>
+                        <TextBlock x:Name="User_Tag1_3" Text="#標籤3" Style="{StaticResource Tag_Text}" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+
+			<Button x:Name="CommentBTN2" Margin="530,5,60,255" Style="{StaticResource Button2}">
+                <Button.ToolTip>
+                    <TextBlock x:Name="Comment_Time_ToolTip2"/>
+                </Button.ToolTip>
+                <DockPanel Height="118" Width="420">
+                    <TextBlock x:Name="User_Name2" Text="用戶名稱" FontWeight="Bold" FontSize="23" Margin="20,10,150,0" DockPanel.Dock="Top"/>
+                    <TextBlock x:Name="User_Rate2" Text="分數" FontWeight="Bold" FontSize="30" Margin="0,0,30,20" DockPanel.Dock="Right" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="User_Comment2" Text="內容" TextWrapping="Wrap" FontSize="19" Margin="20,5,0,27" DockPanel.Dock="Left" MaxHeight="45" Width="300">
+                        <TextBlock.ToolTip>
+                            <TextBlock x:Name="User_Comment_ToolTip2" TextWrapping="Wrap" MaxWidth="250"/>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="-295 53 0 0" Width="350">
+                        <TextBlock x:Name="User_Tag2_1" Text="#標籤1" Style="{StaticResource Tag_Text}"/>
+                        <TextBlock x:Name="User_Tag2_2" Text="#標籤2" Style="{StaticResource Tag_Text}" Margin="10 0 0 0"/>
+                        <TextBlock x:Name="User_Tag2_3" Text="#標籤3" Style="{StaticResource Tag_Text}" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+
+			<Button x:Name="CommentBTN3" Margin="80,130,510,130" Style="{StaticResource Button2}">
+                <Button.ToolTip>
+                    <TextBlock x:Name="Comment_Time_ToolTip3"/>
+                </Button.ToolTip>
+                <DockPanel Height="118" Width="420">
+                    <TextBlock x:Name="User_Name3" Text="用戶名稱" FontWeight="Bold" FontSize="23" Margin="20,10,150,0" DockPanel.Dock="Top"/>
+                    <TextBlock x:Name="User_Rate3" Text="分數" FontWeight="Bold" FontSize="30" Margin="0,0,30,20" DockPanel.Dock="Right" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="User_Comment3" Text="內容" TextWrapping="Wrap" FontSize="19" Margin="20,5,0,27" DockPanel.Dock="Left" MaxHeight="45" Width="300">
+                        <TextBlock.ToolTip>
+                            <TextBlock x:Name="User_Comment_ToolTip3" TextWrapping="Wrap" MaxWidth="250"/>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="-295 53 0 0" Width="350">
+                        <TextBlock x:Name="User_Tag3_1" Text="#標籤1" Style="{StaticResource Tag_Text}"/>
+                        <TextBlock x:Name="User_Tag3_2" Text="#標籤2" Style="{StaticResource Tag_Text}" Margin="10 0 0 0"/>
+                        <TextBlock x:Name="User_Tag3_3" Text="#標籤3" Style="{StaticResource Tag_Text}" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+
+			<Button x:Name="CommentBTN4" Margin="530,130,60,130" Style="{StaticResource Button2}">
+                <Button.ToolTip>
+                    <TextBlock x:Name="Comment_Time_ToolTip4"/>
+                </Button.ToolTip>
+                <DockPanel Height="118" Width="420">
+                    <TextBlock x:Name="User_Name4" Text="用戶名稱" FontWeight="Bold" FontSize="23" Margin="20,10,150,0" DockPanel.Dock="Top"/>
+                    <TextBlock x:Name="User_Rate4" Text="分數" FontWeight="Bold" FontSize="30" Margin="0,0,30,20" DockPanel.Dock="Right" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="User_Comment4" Text="內容" TextWrapping="Wrap" FontSize="19" Margin="20,5,0,27" DockPanel.Dock="Left" MaxHeight="45" Width="300">
+                        <TextBlock.ToolTip>
+                            <TextBlock x:Name="User_Comment_ToolTip4" TextWrapping="Wrap" MaxWidth="250"/>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="-295 53 0 0" Width="350">
+                        <TextBlock x:Name="User_Tag4_1" Text="#標籤1" Style="{StaticResource Tag_Text}"/>
+                        <TextBlock x:Name="User_Tag4_2" Text="#標籤2" Style="{StaticResource Tag_Text}" Margin="10 0 0 0"/>
+                        <TextBlock x:Name="User_Tag4_3" Text="#標籤3" Style="{StaticResource Tag_Text}" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+
+			<Button x:Name="CommentBTN5" Margin="80,255,510,5" Style="{StaticResource Button2}">
+                <Button.ToolTip>
+                    <TextBlock x:Name="Comment_Time_ToolTip5"/>
+                </Button.ToolTip>
+                <DockPanel Height="118" Width="420">
+                    <TextBlock x:Name="User_Name5" Text="用戶名稱" FontWeight="Bold" FontSize="23" Margin="20,10,150,0" DockPanel.Dock="Top"/>
+                    <TextBlock x:Name="User_Rate5" Text="分數" FontWeight="Bold" FontSize="30" Margin="0,0,30,20" DockPanel.Dock="Right" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="User_Comment5" Text="內容" TextWrapping="Wrap" FontSize="19" Margin="20,5,0,27" DockPanel.Dock="Left" MaxHeight="45" Width="300">
+                        <TextBlock.ToolTip>
+                            <TextBlock x:Name="User_Comment_ToolTip5" TextWrapping="Wrap" MaxWidth="250"/>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="-295 53 0 0" Width="350">
+                        <TextBlock x:Name="User_Tag5_1" Text="#標籤1" Style="{StaticResource Tag_Text}"/>
+                        <TextBlock x:Name="User_Tag5_2" Text="#標籤2" Style="{StaticResource Tag_Text}" Margin="10 0 0 0"/>
+                        <TextBlock x:Name="User_Tag5_3" Text="#標籤3" Style="{StaticResource Tag_Text}" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+
+			<Button x:Name="CommentBTN6" Margin="530,255,60,5" Style="{StaticResource Button2}">
+                <Button.ToolTip>
+                    <TextBlock x:Name="Comment_Time_ToolTip6"/>
+                </Button.ToolTip>
+                <DockPanel Height="118" Width="420">
+                    <TextBlock x:Name="User_Name6" Text="用戶名稱" FontWeight="Bold" FontSize="23" Margin="20,10,150,0" DockPanel.Dock="Top"/>
+                    <TextBlock x:Name="User_Rate6" Text="分數" FontWeight="Bold" FontSize="30" Margin="0,0,30,20" DockPanel.Dock="Right" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="User_Comment6" Text="內容" TextWrapping="Wrap" FontSize="19" Margin="20,5,0,27" DockPanel.Dock="Left" MaxHeight="45" Width="300">
+                        <TextBlock.ToolTip>
+                            <TextBlock x:Name="User_Comment_ToolTip6" TextWrapping="Wrap" MaxWidth="250"/>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="-295 53 0 0" Width="350">
+                        <TextBlock x:Name="User_Tag6_1" Text="#標籤1" Style="{StaticResource Tag_Text}"/>
+                        <TextBlock x:Name="User_Tag6_2" Text="#標籤2" Style="{StaticResource Tag_Text}" Margin="10 0 0 0"/>
+                        <TextBlock x:Name="User_Tag6_3" Text="#標籤3" Style="{StaticResource Tag_Text}" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+        </Grid>
+
+        <Grid Margin="0,500,0,0">
+            <Button Name="NextBTN" Content="NEXT" Margin="850,0,0,0" Style="{StaticResource Button1}" Click="NextBTN_Click" Cursor="Hand"/>
+            <Label Name="PageNUM" Content="000/000" Foreground="#9C8F96" FontSize="25" Width="150" Height="40" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Button Name="BackBTN" Content="BACK" Margin="0,0,850,0" Style="{StaticResource Button1}" Click="BackBTN_Click" Cursor="Hand"/>
+        </Grid>
+        
+		<Grid x:Name="Filter" Margin="340,200,340,200" Background="Gray" Opacity="0.8">
+			<StackPanel Orientation="Vertical">
+				<TextBlock Text="選擇加入時段" Foreground="White" FontSize="25" Margin="10 18 0 0" HorizontalAlignment="Center"/>
+				<StackPanel Orientation="Horizontal" Margin="0 60 0 0" HorizontalAlignment="Center">
+					<Button Content="確認" Margin="10 10" Style="{StaticResource Button3}" Click="TimeSelectConfirm"/>
+					<Button Content="取消" Margin="10 10" Style="{StaticResource Button3}" Click="TimeSelectCancel"/>
+				</StackPanel>
+			</StackPanel>
+			<ComboBox x:Name="selectTime" HorizontalAlignment="Left" Margin="70,70,0,0" VerticalAlignment="Top" Width="200" Foreground="White"/>
+		</Grid>
+        
+		<Grid x:Name="ChooseTable" Margin="340,200,340,200" Background="Gray" Opacity="0.8">
+			<StackPanel Orientation="Vertical">
+				<TextBlock Text="選擇加入課表" Foreground="White" FontSize="25" Margin="10 18 0 0" HorizontalAlignment="Center"/>
+				<StackPanel Orientation="Horizontal" Margin="0 60 0 0" HorizontalAlignment="Center">
+					<Button Content="確認" Margin="10 10" Style="{StaticResource Button3}" Click="TableSelectConfirm" Cursor="Hand"/>
+                    <Button Content="取消" Margin="10 10" Style="{StaticResource Button3}" Click="TableSelectCancel" Cursor="Hand"/>
+				</StackPanel>
+			</StackPanel>
+			<ComboBox x:Name="selectTable" HorizontalAlignment="Left" Margin="70,70,0,0" VerticalAlignment="Top" Width="200" Foreground="White"/>
+		</Grid>
+	</Grid>
+
+</Page>

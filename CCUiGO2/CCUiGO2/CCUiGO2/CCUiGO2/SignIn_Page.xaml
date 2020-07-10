@@ -1,0 +1,140 @@
+﻿<Page x:Class="CCUiGO2.SignIn_Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+	  xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
+      xmlns:local="clr-namespace:CCUiGO2"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SignIn_Page" Height="275" Width="480" Background="#6E7783">
+    
+    <Page.Resources>
+        <Style TargetType="TextBox" x:Key="Textbox1">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Width" Value="182"/>
+            <Setter Property="Height" Value="33"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                                CornerRadius="15"
+                                BorderBrush="#D8E6E7"
+                                BorderThickness="2"
+                                Background="#D8E6E7" Margin="10,0,10,0">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="PasswordBox" x:Key="PasswordBox1">
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="Width" Value="182"/>
+            <Setter Property="Height" Value="33"/>
+            <Setter Property="FontSize" Value="9"/>
+            <Setter Property="PasswordChar" Value="●"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border x:Name="border"
+                                CornerRadius="15"
+                                BorderBrush="#D8E6E7"
+                                BorderThickness="2"
+                                Background="#D8E6E7" Margin="10,0,10,0">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="Button1">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Background" Value="#77AAAD"/>
+            <Setter Property="Width" Value="141"/>
+            <Setter Property="Height" Value="33"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="16" Name="PART_Background">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#77AAAD" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="materialDesign:PackIcon" x:Key="materialDesign1">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Foreground" Value="#D8E6E7"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="label1">
+            <Setter Property="FontSize" Value="23"/>
+            <Setter Property="Foreground" Value="#D8E6E7"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid Margin="0,0,0,215">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Sign In" Style="{StaticResource label1}"/>
+                    <Label x:Name="Sign_in_line" Foreground="#77AAAD" 
+                       FontWeight="Bold" BorderThickness="3" BorderBrush="#77AAAD" Height="2"/>
+                </StackPanel>
+                <Label Content="               "/>
+                <StackPanel>
+                    <Label x:Name="Sign_up_Box" Content="Sign Up" Style="{StaticResource label1}"/>
+                    <Label x:Name="Sign_up_line" Foreground="#77AAAD" FontWeight="Bold" BorderThickness="3" BorderBrush="#77AAAD" Opacity="0.5" Height="2"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="0,60,0,80">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,80">
+                <materialDesign:PackIcon Kind="Account" Margin="0,13,0,0" Style="{StaticResource materialDesign1}"/>
+                <TextBox x:Name="id_inputbox" Style="{StaticResource Textbox1}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,50,0,30">
+                <materialDesign:PackIcon Kind="Key" Margin="0,13,0,0" Style="{StaticResource materialDesign1}"/>
+                <PasswordBox x:Name="pw_inputbox" Style="{StaticResource PasswordBox1}"/>
+            </StackPanel>
+            <CheckBox Name="rememberIDcheck" Content="Remember me" HorizontalAlignment="Center" Background="#D8E6E7" BorderBrush="#D8E6E7" Foreground="#FFD8E6E7" Height="25" Margin="0,100,0,0"/>
+        </Grid>
+
+        <Grid Margin="0,195,0,0">
+            <Button x:Name="igoBTN" Content="iGO" Margin="15,0,0,40" Style="{StaticResource Button1}"/>
+            <Button x:Name="loadingBTN" Margin="15,0,0,40" Style="{StaticResource Button1}">
+                <Grid HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="68">
+                    <Image gif:AnimationBehavior.SourceUri="GIF/Spinner_loading.gif"/>
+                </Grid>
+            </Button>
+            <Label Name="forgetpw" Content="Forget Password?" HorizontalAlignment="Center" Foreground="#D8E6E7" Height="25" Margin="10,25,0,0" Opacity="0.4" FontSize="10"/>
+        </Grid>
+    </Grid>
+</Page>

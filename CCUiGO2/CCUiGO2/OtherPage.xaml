@@ -1,0 +1,423 @@
+﻿<Page x:Class="CCUiGO2.OtherPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CCUiGO2"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="575" d:DesignWidth="1010"
+      Title="OtherPage" Background="GhostWhite">
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="Button1">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Width" Value="85"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" CornerRadius="16">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#77AAAD" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="Button2">
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Width" Value="400"/>
+            <Setter Property="Height" Value="128"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" CornerRadius="40">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FBC173" Offset="0.0"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="Button3">
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Foreground" Value="#353848"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="65"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" CornerRadius="16">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#D8E6E7" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="Textbox1">
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="20" BorderBrush="#9DC3C1" BorderThickness="2"
+                                Background="#9DC3C1" Margin="10,0,10,0">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <!--
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                        -->
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="materialDesign:PackIcon" x:Key="materialDesign1">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Foreground" Value="#77AAAD"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="Textblock1">
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="20,10,0,0"/>
+        </Style>
+        
+        <Style TargetType="CheckBox" x:Key="CheckBox1">
+            <Setter Property="Foreground" Value="#D8E6E7"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Background" Value="#D8E6E7"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="30 1 0 0"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid Margin="0,0,0,507">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="53" Margin="327,10,274,0" ToolTip="輸入多個標籤，並用空格隔開，按下enter即可搜尋">
+                <materialDesign:PackIcon Kind="Search" Style="{StaticResource materialDesign1}" Margin="0 13"/>
+                <TextBox x:Name="SearchBox" Text="輸入標籤、課程名稱、老師名稱等" Foreground="#D8E6E7" Style="{StaticResource Textbox1}" Width="320" Height="40" KeyDown="Search_Enter_Press" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
+                <TextBlock Margin="0 13" MouseDown="FilterShowOrNot" Cursor="Hand" ToolTip="進階篩選器">
+					<materialDesign:PackIcon Kind="FilterList" Style="{StaticResource materialDesign1}"/>
+				</TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <Grid Margin="0,73,0,75">
+			<Button x:Name="CourseBTN1" Margin="0,0,450,280" Style="{StaticResource Button2}" Cursor="Hand" Click="CourseBTN_Click">
+                <DockPanel Height="128" Width="400">
+                    <TextBlock x:Name="CourseName1" Text="課程名稱" FontWeight="Bold" FontSize="22" Margin="20,10,20,0" DockPanel.Dock="Top">
+                        <TextBlock.ToolTip>
+                            <TextBlock x:Name="CourseNameToolTip1"/>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <TextBlock x:Name="CourseRate1" Text="分數" FontWeight="Bold" FontSize="35" Margin="0,10,50,30" DockPanel.Dock="Right" HorizontalAlignment="Center"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="CourseDepart1" Text="開課系所" Style="{StaticResource Textblock1}"/>
+                        <TextBlock x:Name="CourseTea1" Text="開課老師" Style="{StaticResource Textblock1}"/>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+
+			<Button x:Name="CourseBTN2" Margin="450,0,0,280" Style="{StaticResource Button2}" Cursor="Hand" Click="CourseBTN_Click">
+                <DockPanel Height="128" Width="400">
+                    <TextBlock x:Name="CourseName2" Text="課程名稱" FontWeight="Bold" FontSize="22" Margin="20,10,20,0" DockPanel.Dock="Top">
+                        <TextBlock.ToolTip>
+                            <TextBlock x:Name="CourseNameToolTip2"/>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <TextBlock x:Name="CourseRate2" Text="分數" FontWeight="Bold" FontSize="35" Margin="0,10,50,30" DockPanel.Dock="Right" HorizontalAlignment="Center"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="CourseDepart2" Text="開課系所" Style="{StaticResource Textblock1}"/>
+                        <TextBlock x:Name="CourseTea2" Text="開課老師" Style="{StaticResource Textblock1}"/>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+
+			<Button x:Name="CourseBTN3" Margin="0,5,450,0" Style="{StaticResource Button2}" Cursor="Hand" Click="CourseBTN_Click">
+                <DockPanel Height="128" Width="400">
+                    <TextBlock x:Name="CourseName3" Text="課程名稱" FontWeight="Bold" FontSize="22" Margin="20,10,20,0" DockPanel.Dock="Top">
+                        <TextBlock.ToolTip>
+                            <TextBlock x:Name="CourseNameToolTip3"/>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <TextBlock x:Name="CourseRate3" Text="分數" FontWeight="Bold" FontSize="35" Margin="0,10,50,30" DockPanel.Dock="Right" HorizontalAlignment="Center"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="CourseDepart3" Text="開課系所" Style="{StaticResource Textblock1}"/>
+                        <TextBlock x:Name="CourseTea3" Text="開課老師" Style="{StaticResource Textblock1}"/>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+
+			<Button x:Name="CourseBTN4" Margin="450,5,0,0" Style="{StaticResource Button2}" Cursor="Hand" Click="CourseBTN_Click">
+                <DockPanel Height="128" Width="400">
+                    <TextBlock x:Name="CourseName4" Text="課程名稱" FontWeight="Bold" FontSize="22" Margin="20,10,20,0" DockPanel.Dock="Top">
+                        <TextBlock.ToolTip>
+                            <TextBlock x:Name="CourseNameToolTip4"/>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <TextBlock x:Name="CourseRate4" Text="分數" FontWeight="Bold" FontSize="35" Margin="0,10,50,30" DockPanel.Dock="Right" HorizontalAlignment="Center"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="CourseDepart4" Text="開課系所" Style="{StaticResource Textblock1}"/>
+                        <TextBlock x:Name="CourseTea4" Text="開課老師" Style="{StaticResource Textblock1}"/>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+
+			<Button x:Name="CourseBTN5" Margin="0,290,450,0" Style="{StaticResource Button2}" Cursor="Hand" Click="CourseBTN_Click">
+                <DockPanel Height="128" Width="400">
+                    <TextBlock x:Name="CourseName5" Text="課程名稱" FontWeight="Bold" FontSize="22" Margin="20,10,20,0" DockPanel.Dock="Top">
+                        <TextBlock.ToolTip>
+                            <TextBlock x:Name="CourseNameToolTip5"/>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <TextBlock x:Name="CourseRate5" Text="分數" FontWeight="Bold" FontSize="35" Margin="0,10,50,30" DockPanel.Dock="Right" HorizontalAlignment="Center"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="CourseDepart5" Text="開課系所" Style="{StaticResource Textblock1}"/>
+                        <TextBlock x:Name="CourseTea5" Text="開課老師" Style="{StaticResource Textblock1}"/>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+
+			<Button x:Name="CourseBTN6" Margin="450,290,0,0" Style="{StaticResource Button2}" Cursor="Hand" Click="CourseBTN_Click">
+                <DockPanel Height="128" Width="400">
+                    <TextBlock x:Name="CourseName6" Text="課程名稱" FontWeight="Bold" FontSize="22" Margin="20,10,20,0" DockPanel.Dock="Top">
+                        <TextBlock.ToolTip>
+                            <TextBlock x:Name="CourseNameToolTip6"/>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <TextBlock x:Name="CourseRate6" Text="分數" FontWeight="Bold" FontSize="35" Margin="0,10,50,30" DockPanel.Dock="Right" HorizontalAlignment="Center"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="CourseDepart6" Text="開課系所" Style="{StaticResource Textblock1}"/>
+                        <TextBlock x:Name="CourseTea6" Text="開課老師" Style="{StaticResource Textblock1}"/>
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+        </Grid>
+
+        <Grid Margin="0,500,0,0">
+            <Button Name="NextBTN" Content="NEXT" Margin="850,0,0,0" Style="{StaticResource Button1}" Click="NextBTN_Click" Cursor="Hand"/>
+            <Label Name="PageNUM" Content="000/000" Foreground="#77AAAD" FontSize="25" Width="150" Height="40" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Button Name="BackBTN" Content="BACK" Margin="0,0,850,0" Style="{StaticResource Button1}" Click="BackBTN_Click" Cursor="Hand"/>
+        </Grid>
+
+        <Grid x:Name="Filter" Margin="130,70,130,20" Background="Gray" Opacity="0.8">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="選擇時段" Foreground="White" FontSize="25" Margin="20 10 0 0"/>
+                <StackPanel x:Name="Time_Interval_All" Orientation="Horizontal">
+                    <WrapPanel Name="MonTime" Orientation="Vertical">
+                        <TextBlock Text="一" Foreground="White" FontSize="24" Margin="30 0 0 0"/>
+                        <local:ToggleButton x:Name="Mon_Button" Height="30" Width="60" Margin="40 -30 0 5" VerticalAlignment="Center" MouseLeftButtonDown="Button_MouseLeftButtonDown"/>
+                        <StackPanel x:Name="Mon" Orientation="Horizontal">
+                            <StackPanel x:Name="MonTime1" Orientation="Vertical">
+                                <CheckBox Content="1" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="2" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="3" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="4" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="5" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="6" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="7" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="8" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="9" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="10" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="11" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="12" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="13" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="14" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="15" Style="{StaticResource CheckBox1}"/>
+                            </StackPanel>
+                            <StackPanel x:Name="MonTime2" Orientation="Vertical">
+                                 <CheckBox Content="A"  Style="{StaticResource CheckBox1}"/>
+                                 <CheckBox Content="B" Style="{StaticResource CheckBox1}"/>
+                                 <CheckBox Content="C" Style="{StaticResource CheckBox1}"/>
+                                 <CheckBox Content="D" Style="{StaticResource CheckBox1}"/>
+                                 <CheckBox Content="E" Style="{StaticResource CheckBox1}"/>
+                                 <CheckBox Content="F" Style="{StaticResource CheckBox1}"/>
+                                 <CheckBox Content="G" Style="{StaticResource CheckBox1}"/>
+                                 <CheckBox Content="H" Style="{StaticResource CheckBox1}"/>
+                                 <CheckBox Content="I" Style="{StaticResource CheckBox1}"/>
+                                 <CheckBox Content="J" Style="{StaticResource CheckBox1}"/>
+                                </StackPanel>
+                            </StackPanel>
+                    </WrapPanel>
+                    <WrapPanel Name="TueTime" Orientation="Vertical" Margin="10 0">
+                        <TextBlock Text="二" Foreground="White" FontSize="24" Margin="30 0 0 0"/>
+                        <local:ToggleButton x:Name="Tue_Button" Height="30" Width="60" Margin="40 -30 0 5" VerticalAlignment="Center" MouseLeftButtonDown="Button_MouseLeftButtonDown"/>
+                        <StackPanel x:Name="Tue" Orientation="Horizontal">
+							<StackPanel x:Name="TueTime1" Orientation="Vertical">
+                                <CheckBox Content="1" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="2" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="3" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="4" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="5" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="6" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="7" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="8" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="9" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="10" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="11" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="12" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="13" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="14" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="15" Style="{StaticResource CheckBox1}"/>
+                            </StackPanel>
+							<StackPanel x:Name="TueTime2" Orientation="Vertical">
+                                <CheckBox Content="A"  Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="B" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="C" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="D" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="E" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="F" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="G" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="H" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="I" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="J" Style="{StaticResource CheckBox1}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </WrapPanel>
+                    <WrapPanel Name="WedTime" Orientation="Vertical" Margin="10 0">
+                        <TextBlock Text="三" Foreground="White" FontSize="24" Margin="30 0 0 0"/>
+                        <local:ToggleButton x:Name="Wed_Button" Height="30" Width="60" Margin="40 -30 0 0" VerticalAlignment="Center"  MouseLeftButtonDown="Button_MouseLeftButtonDown"/>
+						<StackPanel x:Name="Wed" Orientation="Horizontal">
+							<StackPanel x:Name="WedTime1" Orientation="Vertical">
+                                <CheckBox Content="1" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="2" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="3" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="4" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="5" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="6" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="7" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="8" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="9" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="10" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="11" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="12" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="13" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="14" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="15" Style="{StaticResource CheckBox1}"/>
+                            </StackPanel>
+							<StackPanel x:Name="WedTime2" Orientation="Vertical">
+                                <CheckBox Content="A"  Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="B" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="C" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="D" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="E" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="F" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="G" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="H" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="I" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="J" Style="{StaticResource CheckBox1}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </WrapPanel>
+                    <WrapPanel Name="ThuTime" Orientation="Vertical" Margin="10 0">
+                         <TextBlock Text="四" Foreground="White" FontSize="24" Margin="30 0 0 0"/>
+                         <local:ToggleButton x:Name="Thu_Button" Height="30" Width="60" Margin="40 -30 0 0" VerticalAlignment="Center"  MouseLeftButtonDown="Button_MouseLeftButtonDown"/>
+						<StackPanel x:Name="Thu" Orientation="Horizontal">
+							<StackPanel x:Name="ThuTime1" Orientation="Vertical">
+                                <CheckBox Content="1" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="2" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="3" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="4" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="5" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="6" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="7" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="8" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="9" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="10" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="11" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="12" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="13" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="14" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="15" Style="{StaticResource CheckBox1}"/>
+                            </StackPanel>
+							<StackPanel x:Name="ThuTime2" Orientation="Vertical">
+                                <CheckBox Content="A"  Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="B" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="C" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="D" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="E" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="F" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="G" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="H" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="I" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="J" Style="{StaticResource CheckBox1}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </WrapPanel>
+                    <WrapPanel Name="FriTime" Orientation="Vertical" Margin="10 0">
+                         <TextBlock Text="五" Foreground="White" FontSize="24" Margin="30 0 0 0"/>
+                         <local:ToggleButton x:Name="Fri_Button" Height="30" Width="60" Margin="40 -30 0 0" VerticalAlignment="Center"  MouseLeftButtonDown="Button_MouseLeftButtonDown"/>
+						<StackPanel x:Name="Fri" Orientation="Horizontal">
+                            <StackPanel x:Name="FriTime1" Orientation="Vertical">
+                                <CheckBox Content="1" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="2" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="3" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="4" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="5" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="6" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="7" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="8" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="9" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="10" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="11" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="12" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="13" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="14" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="15" Style="{StaticResource CheckBox1}"/>
+                            </StackPanel>
+							<StackPanel x:Name="FriTime2" Orientation="Vertical">
+                                <CheckBox Content="A"  Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="B" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="C" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="D" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="E" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="F" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="G" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="H" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="I" Style="{StaticResource CheckBox1}"/>
+                                <CheckBox Content="J" Style="{StaticResource CheckBox1}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </WrapPanel>
+                </StackPanel>
+                <TextBlock Text="分數間距" Foreground="White" FontSize="25" Margin="20 10 0 5"/>
+                <StackPanel x:Name="RatingIntervalStack" Orientation="Horizontal">
+                    <CheckBox x:Name="MaxFive" Content="小於5分" Style="{StaticResource CheckBox1}"/>
+					<CheckBox x:Name="MaxFour" Content="小於4分" Style="{StaticResource CheckBox1}"/>
+					<CheckBox x:Name="MaxThree" Content="小於3分" Style="{StaticResource CheckBox1}"/>
+					<CheckBox x:Name="MaxTwo" Content="小於2分" Style="{StaticResource CheckBox1}"/>
+					<CheckBox x:Name="MaxOne" Content="小於1分" Style="{StaticResource CheckBox1}"/>
+					<Button Content="確認" Margin="120 -15 0 0" Style="{StaticResource Button3}" Click="FilterComfirm_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</Page>
