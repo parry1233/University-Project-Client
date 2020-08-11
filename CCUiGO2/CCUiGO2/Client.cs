@@ -40,7 +40,7 @@ namespace CCUiGO2
 			try
 			{
 				//埠及IP
-				IPEndPoint ipe = new IPEndPoint(IPAddress.Parse("192.168.100.8"), int.Parse("13000"));
+				IPEndPoint ipe = new IPEndPoint(IPAddress.Parse("192.168.1.106"), int.Parse("13000"));
 				//建立套接字
 				//this.client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 				//開始連線到伺服器
